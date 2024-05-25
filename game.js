@@ -13,9 +13,13 @@ $(".btn").click(function () {
   checkAnswer(userClickedPattern.length - 1);
 });
 
-$(document).keypress(function () {
-  nextSequence();
-  started = true;
+$(document).keypress(function (event) {
+  if (event.key === " ") {
+    nextSequence();
+  } else {
+    alert("Invalid Keypress");
+  }
+  // console.log(event.key);
 });
 
 function nextSequence() {
@@ -46,7 +50,7 @@ function animatePress(currentColor) {
 
 function checkAnswer(currentLevel) {
   if (userClickedPattern[currentLevel] === gamePattern[currentLevel]) {
-    console.log("Success");
+    // console.log("Success");
     if (gamePattern.length === userClickedPattern.length) {
       setTimeout(() => {
         nextSequence();
